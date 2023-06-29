@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My Store</title>
+  <style>
+    /* CSS Styles */
+    .mainbody {
+      width: 1024px;
+      margin: 0 auto;
+    }
+
+    .search-form {
+      background-color: lightblue;
+      padding-left: 5px;
+      border-radius: 10px 0px 0px 10px;
+    }
+
+    .search-input {
+      padding: 6px 16px 7px 42px;
+      border: 2px solid #19BC15;
+      width: 200px;
+      float: left;
+    }
+
+    .search-button {
+      border: 2px solid #19BC15;
+      font-size: 15px;
+      float: left;
+      margin-left: 5px;
+    }
+
+    .dropdown {
+      padding-top: 1px;
+    }
+
+    .dropdown a {
+      color: green;
+      border-radius: 5px;
+      float: left;
+      margin-left: 5px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: purple;
+      font-size: 18px;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .user-account {
+      font-weight: bold;
+      float: right;
+      padding-right: 10px;
+      padding-bottom: 8px;
+      color: green;
+      text-decoration: none;
+    }
+
+    .post-ad {
+      color: purple;
+      font-weight: bold;
+      text-decoration: none;
+      float: right;
+      margin-right: 15px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <table class="mainbody" width="1024" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="search-form">
+              <form action="YourSearch" method="GET" name="">
+                <input class="search-input" name="search" type="search" placeholder="Search Products...">
+                <button class="search-button" name='' class="btn btn-primary" value=''>Search</button>
+              </form>
+              <?php
+                if (isset($_GET['submit-search'])){
+                  $search = mysqli_real_escape_string($con, $_GET['search']);
+                  $get_reviews = "SELECT * FROM products WHERE product_title LIKE '%$search%'";
+                  $run_reviews = mysqli_query($con, $get_reviews);
+                  $reviews_count = mysqli_num_rows($run_reviews);
+                  if ($reviews_count > 0){
+                    while ($row_reviews = mysqli_fetch_array($run_reviews)){
+                      $product_id = $row_reviews['product_id'];
+                      echo "It's Working but under construction."."<br>";
+                    }
+                  }
+                }
+              ?>
+              <div class="dropdown">
+                <a href="#" class="btn btn-default login-text.
+login-text">Dropdown</a>
+                <div class="dropdown-content">
+                  <a href="#">Option 1</a>
+                  <a href="#">Option 2</a>
+                  <a href="#">Option 3</a>
+                </div>
+              </div>
+              <a href="#" class="user-account">My Account</a>
+              <a href="#" class="post-ad">Post an Ad</a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
