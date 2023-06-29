@@ -18,6 +18,15 @@
     /* ... */
   </style> 
 </head>
+
+    <script>
+    // Use JavaScript to fetch and display the content from 'content.html'
+    fetch('topbar_stores.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('content').innerHTML = data;
+      });
+  </script>
 <body style="background:#F4F4F4;">
   <table class="mainbody" width="1024" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
